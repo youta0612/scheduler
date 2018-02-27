@@ -1,0 +1,14 @@
+<h2>
+    <%= @team.name %>'s Game Schedule List
+</h2>
+<p>
+    <%= link_to 'Add new schedule', new_game_path %>
+</p>
+<ul>
+<% @games.each do |game| %>
+<li>
+<%= link_to '|||', game_path(game.id) %>
+<%= game.date %> | <%= game.place %> | <%= game.opponent %>
+</li>
+<% end %>
+</ul>

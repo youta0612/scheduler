@@ -1,0 +1,18 @@
+<h2>
+    New Schedule
+</h2>
+<%= form_for @game do |f| %>
+<p>
+    <%= f.text_field :date, placeholder: 'enter date and time' %>
+</p>
+<p>
+    <%= f.text_field :place, placeholder: 'enter place' %>
+</p>
+<p>
+    <%= f.text_field :opponent, placeholder: 'enter opponent' %>
+</p>
+<%= f.hidden_field :team_id, :value => session[:team_id] %>
+<p>
+    <%= f.submit 'Submit'%>
+</p>
+<% end %>

@@ -1,0 +1,10 @@
+<h2>Your team ID?</h2>
+
+<%= form_for @team do |f| %>
+    <p>
+        <%= f.text_field :id, placeholder: 'enter team id' %>
+    </p>
+    <p>
+        <%= f.submit 'Log in' %>
+    </p>
+<% end %>
