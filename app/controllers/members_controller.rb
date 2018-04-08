@@ -10,11 +10,17 @@ class MembersController < ApplicationController
 
     def create
         @team = current_team
-        @member = Member.new(
+        @member = @team.members.build(
             name:           params[:name], 
-            skill_level:    params[:sl],
-            team_id:        @team.id
+            skill_level:    params[:sl]
             )
+        # games = Game.where(team_id: @team.id)
+        # games.each do |game|
+        #     part = @member.participants.build(
+        #         game_id: game.id,
+        #         participation_flag: false
+        #     )
+        # end
         @member.save
         redirect_to(members_path)
     end

@@ -1,9 +1,10 @@
 <h2><%= @game.team.name %> VS <%= @game.opponent %> at <%= @game.place %></h2>
 <h3><%= @game.date %></h3>
+<%= link_to("[Edit]", edit_game_path) %>
 <ul>
 <% @game.members.each do |member| %>
 <li>
-<%= member.name %>(SL<%= member.skill_level %>) |<%= flag_to_mark(member) %>| <%= member.participant.comment %> <%= link_to '[edit]', participants_path(@member, params: {id: member.participant.id}) %>
+<% render_plain member.participants %>
 </li>
 <% end %>
 </ul>

@@ -1,9 +1,7 @@
 class GamesController < ApplicationController
 
     def new
-        # @game = Game.new
-        # @team_id = session[:team_id]
-        # render plain: @team_id
+        @team = current_team()
     end
     
     def index
@@ -13,13 +11,21 @@ class GamesController < ApplicationController
 
     def show
         @game = Game.find_by(id: params[:id])
+        # @game = Game.includes(:members, :participants).find_by(id: params[:id])
     end
 
     def create
-        # params[:team_id] = session[:team_id]
-        # @game = Game.new(game_params)
-        # @game.save
-        # redirect_to :controller => 'games', :action => 'index', :team_id => session[:team_id]
+        @team = current_team()
+        @game = @team.games.build(
+            date: params[:date],
+            place: params[:place],
+            opponent: params[:opponent]
+        )
+        @game.save
+        redirect_to('/games')
+    end
+
+    def edit
     end
 
     private
@@ -28,8 +34,7 @@ class GamesController < ApplicationController
         end
     
     private
-        def flag_to_mark(member)
-            flag = member.participant.participation_flag
+        def flag_to_mark(flag)
             case
             when flag then mark = '○'
             when !flag then mark = '×'
@@ -37,5 +42,5 @@ class GamesController < ApplicationController
 
             return mark
         end
-    # helper_method :flag_to_mark
+    helper_method :flag_to_mark
 end
