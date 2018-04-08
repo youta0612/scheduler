@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   # 現在のユーザーを取得する
   # @_current_teamが空の場合は、session情報をキーにしてDBから検索する
   def current_team
-    @_current_team ||= team.find_by(id: session[:team_id])
+    @_current_team ||= Team.find_by(id: session[:team_id])
   end
 end

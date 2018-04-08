@@ -1,0 +1,14 @@
+<h2>
+    <%= @team.name %>'s Members List
+</h2>
+<p>
+    <%= link_to('Add new member', new_member_path) %>
+</p>
+<ul>
+<% @members.each do |member| %>
+    <li>
+        <%= link_to('|||', member_path(member.id)) %>
+        <%= member.name %> | <%= member.skill_level %>
+    </li>
+<% end %>
+</ul>

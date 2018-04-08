@@ -1,0 +1,14 @@
+<h2>
+    Add new member into <%= @team.name %>!
+</h2>
+<%= form_tag(members_path) do %>
+    <p>
+        name<input name="name">
+    </p>
+    <p>
+        skill_level<input name="sl">
+    </p>
+    <p>
+        <input type="submit" value="add">
+    </p>
+<% end %>

@@ -1,14 +1,14 @@
 class GamesController < ApplicationController
 
     def new
-        @game = Game.new
-        @team_id = session[:team_id]
+        # @game = Game.new
+        # @team_id = session[:team_id]
         # render plain: @team_id
     end
     
     def index
-        @games = Game.where(team_id: session[:team_id])
-        @team = Team.find_by(id: session[:team_id])
+        @team = current_team()
+        @games = Game.where(team_id: @team.id)
     end
 
     def show
@@ -16,10 +16,10 @@ class GamesController < ApplicationController
     end
 
     def create
-        params[:team_id] = session[:team_id]
-        @game = Game.new(game_params)
-        @game.save
-        redirect_to :controller => 'games', :action => 'index', :team_id => session[:team_id]
+        # params[:team_id] = session[:team_id]
+        # @game = Game.new(game_params)
+        # @game.save
+        # redirect_to :controller => 'games', :action => 'index', :team_id => session[:team_id]
     end
 
     private
@@ -37,5 +37,5 @@ class GamesController < ApplicationController
 
             return mark
         end
-    helper_method :flag_to_mark
+    # helper_method :flag_to_mark
 end
