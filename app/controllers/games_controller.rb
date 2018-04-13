@@ -16,10 +16,11 @@ class GamesController < ApplicationController
 
     def create
         @team = current_team()
-        @game = @team.games.build(
+        @game = @team.games.create(
             date: params[:date],
             place: params[:place],
-            opponent: params[:opponent]
+            opponent: params[:opponent],
+            participation_flag: false
         )
         @game.save
         redirect_to('/games')

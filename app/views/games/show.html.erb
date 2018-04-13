@@ -4,7 +4,8 @@
 <ul>
 <% @game.members.each do |member| %>
 <li>
-<% render_plain member.participants %>
+<% part = member.participants.find_by(game_id: @game.id) %>
+<%= member.name %>(SL<%= member.skill_level %>) |<%= flag_to_mark(part.participation_flag) %>| <%= part.comment %> <%= link_to('[edit]', participants_path(part.id)) %>
 </li>
 <% end %>
 </ul>
